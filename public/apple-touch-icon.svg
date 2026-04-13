@@ -1,0 +1,23 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'>
+  <rect width='180' height='180' rx='40' fill='#ffc600'/>
+  <g transform='translate(90,98)'>
+    <ellipse cx='0' cy='-25' rx='8' ry='47' fill='#dd1d21'/>
+    <ellipse cx='0' cy='-23' rx='7' ry='43' transform='rotate(-19)' fill='#dd1d21'/>
+    <ellipse cx='0' cy='-23' rx='7' ry='43' transform='rotate(19)' fill='#dd1d21'/>
+    <ellipse cx='0' cy='-20' rx='6.5' ry='38' transform='rotate(-38)' fill='#dd1d21'/>
+    <ellipse cx='0' cy='-20' rx='6.5' ry='38' transform='rotate(38)' fill='#dd1d21'/>
+    <ellipse cx='0' cy='-16' rx='5.5' ry='31' transform='rotate(-57)' fill='#dd1d21'/>
+    <ellipse cx='0' cy='-16' rx='5.5' ry='31' transform='rotate(57)' fill='#dd1d21'/>
+    <ellipse cx='0' cy='-12' rx='4.5' ry='23' transform='rotate(-76)' fill='#dd1d21'/>
+    <ellipse cx='0' cy='-12' rx='4.5' ry='23' transform='rotate(76)' fill='#dd1d21'/>
+    <ellipse cx='0' cy='-24' rx='3.2' ry='41' transform='rotate(-9.5)' fill='#ffc600'/>
+    <ellipse cx='0' cy='-24' rx='3.2' ry='41' transform='rotate(9.5)' fill='#ffc600'/>
+    <ellipse cx='0' cy='-21' rx='3' ry='36' transform='rotate(-28.5)' fill='#ffc600'/>
+    <ellipse cx='0' cy='-21' rx='3' ry='36' transform='rotate(28.5)' fill='#ffc600'/>
+    <ellipse cx='0' cy='-18' rx='2.6' ry='30' transform='rotate(-47.5)' fill='#ffc600'/>
+    <ellipse cx='0' cy='-18' rx='2.6' ry='30' transform='rotate(47.5)' fill='#ffc600'/>
+    <ellipse cx='0' cy='-14' rx='2.2' ry='23' transform='rotate(-66.5)' fill='#ffc600'/>
+    <ellipse cx='0' cy='-14' rx='2.2' ry='23' transform='rotate(66.5)' fill='#ffc600'/>
+    <ellipse cx='0' cy='33' rx='32' ry='13' fill='#dd1d21'/>
+  </g>
+</svg>
