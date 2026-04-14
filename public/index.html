@@ -33,15 +33,15 @@
 
     /* ── Design tokens — exactly from shellenergy.com CSS ── */
     :root {
-      --primary:          hsl(192, 100%, 37%);   /* #00BDBD teal */
+      --primary:          hsl(192, 100%, 37%);
       --primary-hover:    hsl(193, 100%, 32%);
       --primary-dark:     hsl(213, 100%, 26.7%);
       --primary-light:    hsl(196, 48%, 95%);
-      --secondary:        hsl(47, 100%, 50%);    /* #FFC200 yellow */
+      --secondary:        hsl(47, 100%, 50%);
       --secondary-hover:  hsl(46, 100%, 45%);
       --shell-red:        #EE282A;
-      --foreground:       hsl(0, 0%, 25%);       /* #404040 */
-      --foreground-dark:  hsl(0, 0%, 29%);       /* #4a4a4a */
+      --foreground:       hsl(0, 0%, 25%);
+      --foreground-dark:  hsl(0, 0%, 29%);
       --muted:            hsl(240, 4.8%, 95.9%);
       --muted-fg:         hsl(240, 3.8%, 46.1%);
       --border:           hsl(240, 5.9%, 90%);
@@ -62,7 +62,7 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ── Navigation — matches shellenergy.com white nav with bottom teal line ── */
+    /* ── Navigation ── */
     .nav {
       position: sticky;
       top: 0;
@@ -80,6 +80,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
     }
 
     .nav-logo {
@@ -105,22 +110,135 @@
       white-space: nowrap;
     }
 
-    /* ── Hero — dark image-backed banner like shellenergy.com ── */
+    #logoutBtn {
+      background: transparent;
+      color: var(--muted-fg);
+      border: 1.5px solid var(--border);
+      border-radius: calc(var(--radius) - 2px);
+      font-family: ShellBook, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 7px 16px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    #logoutBtn:hover { color: var(--foreground-dark); border-color: var(--muted-fg); }
+
+    /* ── Login screen ── */
+    #loginScreen {
+      display: none;
+      min-height: calc(100vh - 72px);
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .login-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .login-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .login-logo img { height: 32px; }
+
+    .login-card h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--foreground-dark);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .login-card p {
+      font-size: 0.84rem;
+      color: var(--muted-fg);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .login-card label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--foreground-dark);
+      margin-bottom: 8px;
+    }
+
+    .login-card input[type="password"] {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) - 2px);
+      padding: 11px 14px;
+      font-family: ShellBook, sans-serif;
+      font-size: 0.9rem;
+      color: var(--foreground);
+      background: var(--muted);
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+      margin-bottom: 16px;
+    }
+
+    .login-card input[type="password"]:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px hsl(192 100% 37% / 0.12);
+      background: #fff;
+    }
+
+    #loginBtn {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: calc(var(--radius) - 2px);
+      font-family: ShellBook, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 11px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    #loginBtn:hover:not(:disabled) { background: var(--primary-hover); }
+    #loginBtn:disabled { background: var(--muted); color: var(--muted-fg); cursor: not-allowed; }
+
+    #loginError {
+      display: none;
+      margin-top: 14px;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      color: #b91c1c;
+      border-radius: calc(var(--radius) - 2px);
+      padding: 10px 14px;
+      font-size: 0.84rem;
+      text-align: center;
+    }
+
+    /* ── App (shown after login) ── */
+    #appScreen { display: none; }
+
+    /* ── Hero ── */
     .hero {
       background: linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.15) 100%),
                   url('https://images.ctfassets.net/1n54v69mwqrd/3QunHPJ8XkhPR9DbRidQHc/4d079fa8c4b525ffa8a68ef6af83497a/Houston-downtown-skyline.jpg') center/cover no-repeat;
-      background-color: #1a3a4a; /* fallback if image fails */
+      background-color: #1a3a4a;
       min-height: 220px;
       display: flex;
       align-items: center;
       padding: 48px 32px;
     }
 
-    .hero-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      width: 100%;
-    }
+    .hero-inner { max-width: 1180px; margin: 0 auto; width: 100%; }
 
     .hero-eyebrow {
       font-size: 0.72rem;
@@ -155,7 +273,7 @@
       padding: 0 32px 80px;
     }
 
-    /* ── Card — white, subtle shadow, rounded corners like shellenergy.com ── */
+    /* ── Card ── */
     .card {
       background: #ffffff;
       border: 1px solid var(--border);
@@ -230,7 +348,7 @@
       flex-wrap: wrap;
     }
 
-    /* ── Buttons — teal primary, ghost secondary, exactly as on shellenergy.com ── */
+    /* ── Buttons ── */
     button {
       cursor: pointer;
       border: none;
@@ -266,14 +384,9 @@
       padding: 9px 22px;
     }
 
-    #clearBtn:hover {
-      background: var(--primary-light);
-    }
+    #clearBtn:hover { background: var(--primary-light); }
 
-    .count-badge {
-      font-size: 0.8rem;
-      color: var(--muted-fg);
-    }
+    .count-badge { font-size: 0.8rem; color: var(--muted-fg); }
 
     /* ── Progress bar ── */
     #progressWrap { display: none; margin-top: 18px; }
@@ -292,11 +405,7 @@
       transition: width 0.3s ease;
     }
 
-    .progress-text {
-      font-size: 0.78rem;
-      color: var(--muted-fg);
-      margin-top: 8px;
-    }
+    .progress-text { font-size: 0.78rem; color: var(--muted-fg); margin-top: 8px; }
 
     /* ── Results ── */
     #results { display: none; }
@@ -310,12 +419,7 @@
       flex-wrap: wrap;
     }
 
-    .results-bar h2 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--foreground-dark);
-    }
-
+    .results-bar h2 { font-size: 1rem; font-weight: 700; color: var(--foreground-dark); }
     .results-meta { font-size: 0.8rem; color: var(--muted-fg); }
 
     #exportBtn {
@@ -358,7 +462,6 @@
     }
 
     tr:last-child td { border-bottom: none; }
-
     tr:hover td { background: var(--primary-light); }
 
     .esi-mono {
@@ -386,7 +489,6 @@
     .status-error    { color: #b91c1c; }
     .status-invalid  { color: #d97706; }
 
-    /* Source badge — teal-tinted to match Shell Energy's primary */
     .source-badge {
       display: inline-flex;
       align-items: center;
@@ -410,7 +512,6 @@
       flex-shrink: 0;
     }
 
-    /* Source details popover */
     details.src-detail { margin-top: 8px; }
 
     details.src-detail summary {
@@ -426,12 +527,7 @@
     details[open].src-detail summary::before { content: '▾ '; }
     details.src-detail summary:hover { color: var(--muted-fg); }
 
-    .src-pills {
-      margin-top: 6px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
+    .src-pills { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 5px; }
 
     .src-pill {
       font-size: 0.69rem;
@@ -473,23 +569,9 @@
       gap: 12px;
     }
 
-    .status-banner.warning {
-      background: #fffbeb;
-      border: 1px solid #fde68a;
-      color: #78350f;
-    }
-
-    .status-banner.success {
-      background: #f0fdf4;
-      border: 1px solid #86efac;
-      color: #14532d;
-    }
-
-    .status-banner .icon {
-      font-size: 1rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
+    .status-banner.warning { background: #fffbeb; border: 1px solid #fde68a; color: #78350f; }
+    .status-banner.success { background: #f0fdf4; border: 1px solid #86efac; color: #14532d; }
+    .status-banner .icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
 
     /* ── Import panel ── */
     .import-toggle {
@@ -512,12 +594,7 @@
       border-top: 1px solid var(--border);
     }
 
-    .import-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
+    .import-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
 
     .import-textarea {
       flex: 1;
@@ -541,12 +618,7 @@
       background: #fff;
     }
 
-    .import-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex-shrink: 0;
-    }
+    .import-actions { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
 
     #importBtn {
       background: var(--primary);
@@ -568,12 +640,7 @@
 
     #clearDbBtn:hover { background: #fef2f2; }
 
-    .import-note {
-      font-size: 0.75rem;
-      color: var(--muted-fg);
-      margin-top: 8px;
-      line-height: 1.5;
-    }
+    .import-note { font-size: 0.75rem; color: var(--muted-fg); margin-top: 8px; line-height: 1.5; }
 
     .db-chip {
       display: inline-flex;
@@ -623,130 +690,257 @@
 <!-- Navigation -->
 <nav class="nav">
   <div class="nav-inner">
-    <a class="nav-logo" href="https://www.shellenergy.com" target="_blank" rel="noopener">
-      <img src="/shell-energy-logo.svg" alt="Shell Energy" />
-    </a>
-    <span class="nav-tool-label">ESI ID Lookup</span>
+    <div class="nav-left">
+      <a class="nav-logo" href="https://www.shellenergy.com" target="_blank" rel="noopener">
+        <img src="/shell-energy-logo.svg" alt="Shell Energy" />
+      </a>
+      <span class="nav-tool-label">ESI ID Lookup</span>
+    </div>
+    <button id="logoutBtn" style="display:none" onclick="logout()">Sign out</button>
   </div>
 </nav>
 
-<!-- Hero -->
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">Texas ERCOT Market</div>
-    <h1>ESI ID Address Lookup</h1>
-    <p class="hero-sub">
-      Paste Electric Service Identifiers to retrieve service addresses from ERCOT market sources.
-      Results show the address and which source returned it.
-    </p>
+<!-- Login screen -->
+<div id="loginScreen" style="display:flex">
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="/shell-energy-logo.svg" alt="Shell Energy" />
+    </div>
+    <h2>Sign in</h2>
+    <p>Internal use only — Shell Energy staff</p>
+    <form onsubmit="login(event)">
+      <label for="passwordInput">Password</label>
+      <input type="password" id="passwordInput" autocomplete="current-password" placeholder="Enter password" required />
+      <button type="submit" id="loginBtn">Sign in</button>
+    </form>
+    <div id="loginError"></div>
   </div>
 </div>
 
-<!-- Main -->
-<main>
+<!-- App (shown after login) -->
+<div id="appScreen">
 
-  <!-- Source status banner (populated by JS on load) -->
-  <div id="sourceBanner"></div>
-
-  <!-- Input card -->
-  <div class="card">
-    <div class="card-header">
-      <h2>Enter ESI IDs</h2>
-      <p>One per line, or comma/space separated &mdash; up to 500 per search</p>
-    </div>
-
-    <label for="esiInput">ESI IDs <span class="hint">(numeric, 5+ digits)</span></label>
-    <textarea
-      id="esiInput"
-      placeholder="1008901013756400000&#10;1044372010565704000&#10;1007000014097390000&#10;..."
-      spellcheck="false"
-    ></textarea>
-
-    <div class="actions">
-      <button id="searchBtn" onclick="runLookup()">Search</button>
-      <button id="clearBtn" onclick="clearAll()">Clear</button>
-      <span class="count-badge" id="countBadge"></span>
-    </div>
-
-    <div id="progressWrap">
-      <div class="progress-bg">
-        <div class="progress-fill" id="progressFill" style="width:0%"></div>
-      </div>
-      <div class="progress-text" id="progressText">Querying sources…</div>
-    </div>
-
-    <!-- Import / local database panel -->
-    <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-      <div>
-        <span id="dbChip" style="display:none" class="db-chip">📋 <span id="dbCount">0</span> local records loaded</span>
-        <button class="import-toggle" onclick="toggleImport()">&#43; Import ESI → Address data</button>
-      </div>
-    </div>
-
-    <div id="importPanel">
-      <p style="font-size:0.85rem;font-weight:600;color:var(--foreground-dark);margin-bottom:10px">
-        Paste CSV data (ESI ID → Service Address)
-      </p>
-      <div class="import-row">
-        <textarea class="import-textarea" id="importCsv"
-          placeholder="ESI ID,Service Address&#10;1008901013756400000,123 Main St, Dallas TX 75201&#10;1044372010565704000,456 Oak Ave, Houston TX 77002&#10;..."></textarea>
-        <div class="import-actions">
-          <button id="importBtn" onclick="importData()">Import</button>
-          <button id="clearDbBtn" onclick="clearDB()">Clear DB</button>
-        </div>
-      </div>
-      <p class="import-note">
-        Accepts CSV with <strong>ESI ID</strong> and <strong>Address</strong> columns (headers required).
-        Optionally include a <strong>Source</strong> column. Data is stored in memory for this session only.
-        Export from your CRM, ERCOT portal, or SmartMeterTexas.
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Texas ERCOT Market</div>
+      <h1>ESI ID Address Lookup</h1>
+      <p class="hero-sub">
+        Paste Electric Service Identifiers to retrieve service addresses from ERCOT market sources.
+        Results show the address and which source returned it.
       </p>
     </div>
   </div>
 
-  <!-- Results card -->
-  <div id="results">
+  <!-- Main -->
+  <main>
+
+    <!-- Source status banner -->
+    <div id="sourceBanner"></div>
+
+    <!-- Input card -->
     <div class="card">
-      <div class="results-bar">
-        <div>
-          <h2>Results</h2>
-          <div class="results-meta" id="resultsMeta"></div>
-        </div>
-        <button id="exportBtn" onclick="exportCSV()">Export CSV</button>
+      <div class="card-header">
+        <h2>Enter ESI IDs</h2>
+        <p>One per line, or comma/space separated &mdash; up to 500 per search</p>
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>ESI ID</th>
-              <th>TDSP / Utility</th>
-              <th>Service Address</th>
-              <th>Source</th>
-            </tr>
-          </thead>
-          <tbody id="resultsBody"></tbody>
-        </table>
+
+      <label for="esiInput">ESI IDs <span class="hint">(numeric, 5+ digits)</span></label>
+      <textarea
+        id="esiInput"
+        placeholder="1008901013756400000&#10;1044372010565704000&#10;1007000014097390000&#10;..."
+        spellcheck="false"
+      ></textarea>
+
+      <div class="actions">
+        <button id="searchBtn" onclick="runLookup()">Search</button>
+        <button id="clearBtn" onclick="clearAll()">Clear</button>
+        <span class="count-badge" id="countBadge"></span>
+      </div>
+
+      <div id="progressWrap">
+        <div class="progress-bg">
+          <div class="progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+        <div class="progress-text" id="progressText">Querying sources…</div>
+      </div>
+
+      <!-- Import / local database panel -->
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+        <div>
+          <span id="dbChip" style="display:none" class="db-chip">&#128203; <span id="dbCount">0</span> local records loaded</span>
+          <button class="import-toggle" onclick="toggleImport()">&#43; Import ESI &rarr; Address data</button>
+        </div>
+      </div>
+
+      <div id="importPanel">
+        <p style="font-size:0.85rem;font-weight:600;color:var(--foreground-dark);margin-bottom:10px">
+          Paste CSV data (ESI ID &rarr; Service Address)
+        </p>
+        <div class="import-row">
+          <textarea class="import-textarea" id="importCsv"
+            placeholder="ESI ID,Service Address&#10;1008901013756400000,123 Main St, Dallas TX 75201&#10;1044372010565704000,456 Oak Ave, Houston TX 77002&#10;..."></textarea>
+          <div class="import-actions">
+            <button id="importBtn" onclick="importData()">Import</button>
+            <button id="clearDbBtn" onclick="clearDB()">Clear DB</button>
+          </div>
+        </div>
+        <p class="import-note">
+          Accepts CSV with <strong>ESI ID</strong> and <strong>Address</strong> columns (headers required).
+          Optionally include a <strong>Source</strong> column. Data is stored in memory for this session only.
+          Export from your CRM, ERCOT portal, or SmartMeterTexas.
+        </p>
       </div>
     </div>
-  </div>
 
-</main>
+    <!-- Results card -->
+    <div id="results">
+      <div class="card">
+        <div class="results-bar">
+          <div>
+            <h2>Results</h2>
+            <div class="results-meta" id="resultsMeta"></div>
+          </div>
+          <button id="exportBtn" onclick="exportCSV()">Export CSV</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>ESI ID</th>
+                <th>TDSP / Utility</th>
+                <th>Service Address</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-<!-- Footer -->
-<footer>
-  <img src="/shell-energy-logo.svg" alt="Shell Energy" />
-  ESI ID Lookup &nbsp;&middot;&nbsp; Texas ERCOT Market &nbsp;&middot;&nbsp; Internal Use Only
-</footer>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <img src="/shell-energy-logo.svg" alt="Shell Energy" />
+    ESI ID Lookup &nbsp;&middot;&nbsp; Texas ERCOT Market &nbsp;&middot;&nbsp; Internal Use Only
+  </footer>
+
+</div><!-- #appScreen -->
 
 <script>
-  let lastResults = [];
+  // ── Auth token management ─────────────────────────────────────────────────
+  const TOKEN_KEY = 'esi_lookup_token';
 
-  // Load status on page load
-  window.addEventListener('load', loadStatus);
+  function getToken() {
+    return sessionStorage.getItem(TOKEN_KEY);
+  }
 
+  function setToken(token) {
+    sessionStorage.setItem(TOKEN_KEY, token);
+  }
+
+  function clearToken() {
+    sessionStorage.removeItem(TOKEN_KEY);
+  }
+
+  // Authenticated fetch — attaches Authorization header, handles 401 globally.
+  async function apiFetch(url, options = {}) {
+    const token = getToken();
+    const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    const res = await fetch(url, { ...options, headers });
+    if (res.status === 401) {
+      clearToken();
+      showLogin();
+      throw new Error('Session expired — please sign in again.');
+    }
+    return res;
+  }
+
+  // ── Screen switching ───────────────────────────────────────────────────────
+  function showLogin() {
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('appScreen').style.display = 'none';
+    document.getElementById('logoutBtn').style.display = 'none';
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('loginError').style.display = 'none';
+  }
+
+  function showApp() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('appScreen').style.display = 'block';
+    document.getElementById('logoutBtn').style.display = '';
+  }
+
+  // ── Login ──────────────────────────────────────────────────────────────────
+  async function login(e) {
+    e.preventDefault();
+    const btn = document.getElementById('loginBtn');
+    const errEl = document.getElementById('loginError');
+    const password = document.getElementById('passwordInput').value;
+
+    btn.disabled = true;
+    btn.textContent = 'Signing in…';
+    errEl.style.display = 'none';
+
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        errEl.textContent = data.error || 'Sign in failed.';
+        errEl.style.display = 'block';
+        return;
+      }
+      setToken(data.token);
+      showApp();
+      loadStatus();
+    } catch (err) {
+      errEl.textContent = 'Network error — please try again.';
+      errEl.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Sign in';
+    }
+  }
+
+  // ── Logout ─────────────────────────────────────────────────────────────────
+  async function logout() {
+    try {
+      await apiFetch('/api/logout', { method: 'POST' });
+    } catch (_) {}
+    clearToken();
+    showLogin();
+  }
+
+  // ── Bootstrap: verify token or show login ─────────────────────────────────
+  window.addEventListener('load', async () => {
+    if (!getToken()) { showLogin(); return; }
+    try {
+      const res = await apiFetch('/api/db-status');
+      if (res.ok) {
+        showApp();
+        const s = await res.json();
+        renderBanner(s);
+        updateDbChip(s.localRecords);
+      } else {
+        showLogin();
+      }
+    } catch (_) {
+      showLogin();
+    }
+  });
+
+  // ── Status banner ──────────────────────────────────────────────────────────
   async function loadStatus() {
     try {
-      const res = await fetch('/api/db-status');
+      const res = await apiFetch('/api/db-status');
       const s = await res.json();
       renderBanner(s);
       updateDbChip(s.localRecords);
@@ -760,11 +954,11 @@
     if (!s.ercotConfigured) issues.push('<strong>ERCOT MIS</strong> — set <code>ERCOT_CERT</code> &amp; <code>ERCOT_KEY</code> env vars');
 
     if (s.localRecords > 0 && issues.length === 0) {
-      el.innerHTML = `<div class="status-banner success"><span class="icon">✓</span><div>${s.localRecords.toLocaleString()} local records loaded. All remote sources configured.</div></div>`;
+      el.innerHTML = `<div class="status-banner success"><span class="icon">&#10003;</span><div>${s.localRecords.toLocaleString()} local records loaded. All remote sources configured.</div></div>`;
     } else if (issues.length > 0) {
       el.innerHTML = `
         <div class="status-banner warning">
-          <span class="icon">⚠</span>
+          <span class="icon">&#9888;</span>
           <div>
             <strong>Address lookup requires configuration.</strong>
             No external API credentials are set — addresses will only return from imported local data.
@@ -789,14 +983,20 @@
     }
   }
 
+  // ── ESI ID parsing ─────────────────────────────────────────────────────────
   function parseESIIds(text) {
     return text.split(/[\n,\s]+/).map(s => s.trim()).filter(s => /^\d{5,}$/.test(s));
   }
 
-  document.getElementById('esiInput').addEventListener('input', function () {
-    const ids = parseESIIds(this.value);
-    document.getElementById('countBadge').textContent =
-      ids.length ? `${ids.length} ESI ID${ids.length !== 1 ? 's' : ''} detected` : '';
+  document.addEventListener('DOMContentLoaded', () => {
+    const esiInput = document.getElementById('esiInput');
+    if (esiInput) {
+      esiInput.addEventListener('input', function () {
+        const ids = parseESIIds(this.value);
+        document.getElementById('countBadge').textContent =
+          ids.length ? `${ids.length} ESI ID${ids.length !== 1 ? 's' : ''} detected` : '';
+      });
+    }
   });
 
   function clearAll() {
@@ -811,6 +1011,7 @@
     p.style.display = p.style.display === 'block' ? 'none' : 'block';
   }
 
+  // ── Import ─────────────────────────────────────────────────────────────────
   async function importData() {
     const csv = document.getElementById('importCsv').value.trim();
     if (!csv) { alert('Paste CSV data first.'); return; }
@@ -820,9 +1021,8 @@
     btn.textContent = 'Importing…';
 
     try {
-      const res = await fetch('/api/import', {
+      const res = await apiFetch('/api/import', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ csv }),
       });
       const data = await res.json();
@@ -831,7 +1031,7 @@
       document.getElementById('importPanel').style.display = 'none';
       updateDbChip(data.total);
       await loadStatus();
-      alert(`✓ Imported ${data.imported.toLocaleString()} records (${data.skipped} skipped). Total in database: ${data.total.toLocaleString()}.`);
+      alert(`Imported ${data.imported.toLocaleString()} records (${data.skipped} skipped). Total in database: ${data.total.toLocaleString()}.`);
     } catch (e) {
       alert('Import failed: ' + e.message);
     } finally {
@@ -842,10 +1042,13 @@
 
   async function clearDB() {
     if (!confirm('Clear all imported address data?')) return;
-    await fetch('/api/clear', { method: 'POST' });
+    await apiFetch('/api/clear', { method: 'POST' });
     updateDbChip(0);
     await loadStatus();
   }
+
+  // ── Lookup ─────────────────────────────────────────────────────────────────
+  let lastResults = [];
 
   async function runLookup() {
     const esiIds = parseESIIds(document.getElementById('esiInput').value);
@@ -869,9 +1072,8 @@
     }, 350);
 
     try {
-      const res = await fetch('/api/lookup', {
+      const res = await apiFetch('/api/lookup', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ esiIds }),
       });
       if (!res.ok) throw new Error(`Server error ${res.status}`);
@@ -894,16 +1096,17 @@
     }
   }
 
+  // ── Rendering helpers ──────────────────────────────────────────────────────
   function esc(s) {
     return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
   function statusSpan(status) {
     const map = {
-      found:     ['✓ Found',    'status-found'],
-      not_found: ['Not found',  'status-missing'],
-      invalid:   ['Invalid ID', 'status-invalid'],
-      error:     ['Error',      'status-error'],
+      found:     ['&#10003; Found',  'status-found'],
+      not_found: ['Not found',       'status-missing'],
+      invalid:   ['Invalid ID',      'status-invalid'],
+      error:     ['Error',           'status-error'],
     };
     const [label, cls] = map[status] || ['—', ''];
     return `<span class="${cls}">${label}</span>`;
@@ -953,6 +1156,7 @@
     document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  // ── Export CSV ─────────────────────────────────────────────────────────────
   function exportCSV() {
     if (!lastResults.length) return;
     const rows = [['ESI ID','TDSP','Service Address','Source','Status']];
